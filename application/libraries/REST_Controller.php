@@ -392,6 +392,10 @@ class REST_Controller extends CI_Controller {
 	{
 		$method = strtolower($this->input->server('REQUEST_METHOD'));
 
+		if ($this->config->item('enable_emulate_request') && $this->input->get('method'))
+		{
+			$method =  strtolower($this->input->get('method'));
+		}
 		if ($this->config->item('enable_emulate_request') && $this->input->post('_method'))
 		{
 			$method =  $this->input->post('_method');
